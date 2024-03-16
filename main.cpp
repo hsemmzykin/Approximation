@@ -25,6 +25,9 @@ int main(int argc, char **argv) {
         initialPoints.emplace_back(X, Y);
       }
     }
+    for (const auto &x : initialPoints) {
+      std::cout << "INITIAL POINT: " << x.first << " " << x.second << std::endl;
+    }
     inputData.close();
   } else {
     std::cerr << "\nERROR OCCURED WHILE OPENING FILE\n";
@@ -34,8 +37,10 @@ int main(int argc, char **argv) {
   approximation::Points2D outputApproximation{
       std::move(approximation::approximate(approximation::METHODS::NEWTON,
                                            initialPoints))};
+
 #ifdef _DEBUG
   std::cout << outputApproximation;
 #endif
+
   return 0;
 }

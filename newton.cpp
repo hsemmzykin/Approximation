@@ -3,9 +3,9 @@
 #include <iostream>
 #include <stdexcept>
 /* TODO:
-1. Write calculateHorner method
-2. fix calculatedDividedDifferences
-3. in approximation fix 2 methods in cpp file
+1. Write calculateHorner method DONE
+2. fix calculatedDividedDifferences DONE
+3. in approximation fix 2 methods in cpp file na ya
 */
 namespace approximation {
 
@@ -59,7 +59,6 @@ double Newton::calculateHorner(double x) {
   }
 #ifdef _DEBUG
   std::cout << x << " : " << result;
-
 #endif
   return result;
 }
@@ -72,7 +71,8 @@ Points2D &Newton::newtonApproximation() {
        x <= this->inputData->back().first; x += CALC_DELTA) {
     this->resultData.emplace_back(x, this->calculateHorner(x));
 #ifdef _DEBUG
-    std::cout << x << " : " << this->resultData.back() << std::endl;
+    std::cout << this->calculateHorner(x);
+    std::cout << std::endl;
 #endif
   }
   return this->resultData;

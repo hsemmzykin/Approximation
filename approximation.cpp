@@ -5,7 +5,7 @@ namespace approximation {
 
 std::ostream &operator<<(std::ostream &out, const Points2D &Points2D) {
   for (const auto &pairs : Points2D) {
-    out << pairs.first << " " << pairs.second << std::endl;
+    out << pairs.first << " " << pairs.second;
   }
   return out;
 }
