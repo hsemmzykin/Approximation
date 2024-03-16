@@ -1,7 +1,6 @@
 #pragma once
 #include "approximation.hpp"
 #include <memory>
-
 namespace approximation {
 class Newton {
 public:
@@ -12,14 +11,13 @@ public:
   Newton &operator=(Newton &&) = delete;
   Newton(Newton &&) = delete;
 
-  Points &&newtonApproximation();
+  Points2D &newtonApproximation();
 
 private:
   Points divDiff;
+  Points2D resultData;
   std::shared_ptr<Points2D> inputData;
-  inline double dividedDifference(const Point2D &ith, const Point2D &jth);
-  Points &&calculateDividedDifferences(const Points2D &sortedPoints);
-  double calculateHorner(double x, const Points &differences,
-                         const Points2D &sortedPoints);
+  void calculateDividedDifferences();
+  double calculateHorner(double x);
 };
 }; // namespace approximation

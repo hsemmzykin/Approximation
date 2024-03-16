@@ -4,6 +4,9 @@
 #include <vector>
 
 namespace approximation {
+constexpr double CALCULATION_ERROR{1e-9};
+constexpr double CALC_DELTA{1e-3};
+
 enum class METHODS {
   NEWTON,
 };

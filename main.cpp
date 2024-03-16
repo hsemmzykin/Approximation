@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
   }
   std::filesystem::path inputFile(argv[1]);
   std::ifstream inputData(inputFile);
-  approximation::Points initialPoints;
+  approximation::Points2D initialPoints;
   if (inputData.is_open()) {
     while (inputData) {
       double X{std::numeric_limits<double>::max()};
@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  approximation::Points outputApproximation{
+  approximation::Points2D outputApproximation{
       std::move(approximation::approximate(approximation::METHODS::NEWTON,
                                            initialPoints))};
 #ifdef _DEBUG
