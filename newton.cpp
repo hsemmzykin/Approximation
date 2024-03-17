@@ -68,7 +68,7 @@ Points2D &Newton::newtonApproximation() {
     this->calculateDividedDifferences();
   }
   for (auto x{this->inputData->front().first};
-       x <= this->inputData->back().first; x += CALC_DELTA) {
+       x <= this->inputData->back().first - CALC_DELTA; x += CALC_DELTA) {
     this->resultData.emplace_back(x, this->calculateHorner(x));
 #ifdef _DEBUG
     std::cout << this->calculateHorner(x);

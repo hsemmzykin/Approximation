@@ -37,6 +37,14 @@ int main(int argc, char **argv) {
   approximation::Points2D outputApproximation{
       std::move(approximation::approximate(approximation::METHODS::NEWTON,
                                            initialPoints))};
+  std::ofstream fout("file.txt");
+  if (fout.is_open()) {
+    fout << outputApproximation;
+    fout.close();
+  } else {
+    std::cerr << "\nERROR OCCURED WHILE OPENING OUTPUT FILE\n";
+    return EXIT_FAILURE;
+  }
 
 #ifdef _DEBUG
   std::cout << outputApproximation;

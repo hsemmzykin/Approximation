@@ -45,7 +45,7 @@ public:
 
   void writeBufferToFile(const std::string &fileName) {
     std::ofstream fileOut(fileName);
-    for (auto &line : buffer)
+    for (const auto &line : buffer)
       fileOut << line;
     fileOut.close();
   }

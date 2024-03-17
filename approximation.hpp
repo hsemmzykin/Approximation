@@ -18,4 +18,4 @@ Points2D &&approximate(METHODS method, const Points2D &input);
 }; // namespace approximation
 
 std::ostream &operator<<(std::ostream &out,
-                         const approximation::Points2D &Points2D);
+                         const approximation::Points2D &Points2);
