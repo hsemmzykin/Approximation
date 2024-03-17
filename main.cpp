@@ -4,6 +4,7 @@
 #include <limits>
 
 #include "approximation.hpp"
+#include "gnuplot.hpp"
 
 int main(int argc, char **argv) {
   if (argc != 2) {
@@ -45,6 +46,16 @@ int main(int argc, char **argv) {
     std::cerr << "\nERROR OCCURED WHILE OPENING OUTPUT FILE\n";
     return EXIT_FAILURE;
   }
+  GnuplotPipe gp;
+  // gp.sendLine("plot \"file.txt\" title \"Newton\", \"test\" title \"Test\"
+  // "); // on a single plane
+  gp.sendLine("set key Left reverse");
+  gp.sendLine("set multiplot layout 2,2");
+  gp.sendLine("plot \"file.txt\" title \"Newton\"");
+  gp.sendLine("plot \"test\" title \"Input con-d with BezCurves "
+              "by gnuplot \" smooth bezier");
+  gp.sendLine("plot \"test\" title \"Input Data Raw\" ");
+  gp.sendLine("unset multiplot");
 
 #ifdef _DEBUG
   std::cout << outputApproximation;
