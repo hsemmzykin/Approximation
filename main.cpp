@@ -35,30 +35,28 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  approximation::Points2D outputApproximation{
+  approximation::Points2D outputApproximationNewton{
       std::move(approximation::approximate(approximation::METHODS::NEWTON,
                                            initialPoints))};
-  std::ofstream fout("file.txt");
+  std::ofstream fout("newton");
   if (fout.is_open()) {
-    fout << outputApproximation;
+    fout << outputApproximationNewton;
     fout.close();
   } else {
     std::cerr << "\nERROR OCCURED WHILE OPENING OUTPUT FILE\n";
     return EXIT_FAILURE;
   }
   GnuplotPipe gp;
-  // gp.sendLine("plot \"file.txt\" title \"Newton\", \"test\" title \"Test\"
-  // "); // on a single plane
   gp.sendLine("set key Left reverse");
   gp.sendLine("set multiplot layout 2,2");
-  gp.sendLine("plot \"file.txt\" title \"Newton\"");
+  gp.sendLine("plot \"newton\" title \"Newton\"");
   gp.sendLine("plot \"test\" title \"Input con-d with BezCurves "
               "by gnuplot \" smooth bezier");
   gp.sendLine("plot \"test\" title \"Input Data Raw\" ");
   gp.sendLine("unset multiplot");
 
 #ifdef _DEBUG
-  std::cout << outputApproximation;
+  std::cout << outputApproximationNewton;
 #endif
 
   return 0;

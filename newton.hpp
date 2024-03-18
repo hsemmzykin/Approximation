@@ -1,23 +1,22 @@
 #pragma once
 #include "approximation.hpp"
-#include <memory>
+#include <functional>
+
 namespace approximation {
 class Newton {
 public:
-  Newton(std::shared_ptr<Points2D> sortedPoints);
-  Newton() = delete;
-  Newton(const Newton &) = delete;
-  Newton &operator=(const Newton &) = delete;
-  Newton &operator=(Newton &&) = delete;
-  Newton(Newton &&) = delete;
+  Newton(Points2D &Points);
 
-  Points2D &newtonApproximation();
+  Points2D newtonApproximation();
 
 private:
-  Points divDiff;
-  Points2D resultData;
-  std::shared_ptr<Points2D> inputData;
   void calculateDividedDifferences();
   double calculateHorner(double x);
+
+  const Points2D &input() const;
+  Points2D &input();
+
+  Points divDiff;
+  std::reference_wrapper<Points2D> inputData;
 };
 }; // namespace approximation

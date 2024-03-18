@@ -1,18 +1,18 @@
 #include "approximation.hpp"
+//#include "chebyshev.hpp"
 #include "newton.hpp"
-#include <memory>
 
 namespace approximation {
 
-Points2D &&approximate(METHODS method, const Points2D &input) {
+Points2D approximate(METHODS method, Points2D &input) {
+  static Points2D Empty;
   switch (method) {
   case METHODS::NEWTON: {
-    Newton *algorithm = new Newton(std::make_shared<Points2D>(input));
-    // auto algo = std::make_unique<Newton>(std::make_shared<Points2D>(input));
-    return std::forward<Points2D>(algorithm->newtonApproximation());
+    Newton algorithm = Newton(input);
+    return algorithm.newtonApproximation();
   }
   default:
-    return std::forward<Points2D>(Points2D());
+    return Empty;
   }
 }
 }; // namespace approximation
