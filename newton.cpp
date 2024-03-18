@@ -30,7 +30,7 @@ Points2D Newton::newtonApproximation() {
   Points2D resultData;
   if (divDiff.empty()) {
     calculateDividedDifferences();
-    for (auto x{input().front().first}; x <= input().back().first - CALC_DELTA;
+    for (auto x{input().front().first}; x <= input().back().first;
          x += CALC_DELTA) {
       resultData.emplace_back(x, calculateHorner(x));
     }
